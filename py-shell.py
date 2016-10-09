@@ -37,7 +37,7 @@ def shell_loop():
     cm2 = ''
     
     while status == STATUS_RUN:
-        # Display a command prompt
+        # Display a shell
         if mode != M[2]:
             sys.stdout.write('> ')
         elif mode == M[2]:
