@@ -2,7 +2,7 @@ import sys
 
 STATUS_RUN = 1
 STATUS_STOP = 0
-M = ['START','SinglLine','MultiLine']
+M = ['START','SingleLine','MultiLine']
 _global_env = {}
 _local_env = {}
 
@@ -63,4 +63,12 @@ def shell_loop():
     shell_loop()
 
 if __name__ == "__main__":
-    shell_loop() 
+    try:
+        if len(sys.argv)>1:
+            file = sys.argv[-1]
+            exect(open(file).read())
+    except IndexError:
+        pass
+    
+    if '-i' in sys.argv or len(sys.argv)==1:
+        shell_loop() 
