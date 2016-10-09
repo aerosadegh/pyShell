@@ -3,8 +3,8 @@ import sys
 STATUS_RUN = 1
 STATUS_STOP = 0
 M = ['START','SinglLine','MultiLine']
-global_env = {}
-local_env = {}
+_global_env = {}
+_local_env = {}
 
 def set_mod(cmd,mod,getcom):
     try:
@@ -21,12 +21,12 @@ def set_mod(cmd,mod,getcom):
     
 def exect(cmd):
     #print('CMD:\n',cmd)
-    sp = [';','=',':']
+    sp = [';','=',':','print','import']
     if all([sp[i] not in cmd for i in range(len(sp))]):
-        print(eval(cmd,global_env, local_env))
+        print(eval(cmd,_global_env, _local_env))
     else:
         my_code_AST = compile(cmd, "MyCode", "exec")
-        exec(my_code_AST, global_env, local_env)
+        exec(my_code_AST, _global_env, _local_env)
     return STATUS_STOP
     
     
